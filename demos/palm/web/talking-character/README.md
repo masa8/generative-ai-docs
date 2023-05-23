@@ -1,3 +1,32 @@
+# Quick Start
+
+## Dockerfile
+```dockerfile
+From debian:latest
+
+WORKDIR /app
+RUN apt-get update && apt-get install -y git nodejs npm
+RUN npm install -g create-react-app
+RUN npm i --package-lock-only
+RUN npm audit fix
+RUN git clone https://github.com/google/generative-ai-docs
+
+
+WORKDIR /app/generative-ai-docs/demos/palm/web/talking-character
+RUN npm install && npm install @babel/plugin-proposal-class-properties && npm install @babel/plugin-proposal-class-properties
+
+EXPOSE 3000
+CMD ["sh", "-c", "HTTPS=true npm start"]
+```
+
+## Build and Run
+sudo docker build -t chat:latest .
+sudo docker run -it -p 3000:3000 chat:latest
+
+
+
+
+
 ![talking-character-header](./docs/talking-character-header.png)
 
 # LLM Demo - Talking Character
