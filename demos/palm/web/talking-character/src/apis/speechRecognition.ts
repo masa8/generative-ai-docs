@@ -192,6 +192,8 @@ const useSpeechRecognition =
                 const transcript =
                     topTranscriptionAlternative.alternatives[0].transcript;
                 onSpeechFoundCallback.current(transcript);
+              }else{
+                setCharacterState(CharacterState.Idle);
               }
             });
       };
